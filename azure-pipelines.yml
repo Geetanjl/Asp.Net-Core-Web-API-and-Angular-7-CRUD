@@ -42,11 +42,9 @@ stages:
         artifactName: 'backend'
         downloadPath: '$(System.ArtifactsDirectory)'
 
-- stage: 
-  pool:
-    vmImage: Ubuntu-latest
-  jobs:
   - job: frontend_build
+    pool:
+     VmImage: ubuntu-latest
     steps:
     - task: NodeTool@0
       displayName: node install
@@ -67,6 +65,6 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: publish frontend artifact
       inputs:
-        PathtoPublish: '$(Build.SourcesDirectory)/dist/Angular7'
+        PathtoPublish: '$(Build.SourcesDirectory)/Angular7/dist/Angular7'
         ArtifactName: 'frontend'
         publishLocation: 'Container'
