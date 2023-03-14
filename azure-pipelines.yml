@@ -48,6 +48,11 @@ stages:
   jobs:
   - job: frontend_build
     steps:
+    - task: NodeTool@0
+      displayName: node install
+      inputs:
+        versionSource: 'spec'
+        versionSpec: '6.x'
     - task: Npm@1
       displayName: npm install
       inputs:
