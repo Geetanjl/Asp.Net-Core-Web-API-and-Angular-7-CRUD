@@ -45,12 +45,12 @@ stages:
       displayName: npm install
       inputs:
         command: 'install'
-        workingDir: 'Asp.Net-Core-Web-API-and-Angular-7-CRUD/Angular7'
+        workingDir: 'Angular7'
     - task: Npm@1
       displayName: npm run and build
       inputs:
         command: 'custom'
-        workingDir: 'Asp.Net-Core-Web-API-and-Angular-7-CRUD/Angular7'
+        workingDir: 'Angular7'
         customCommand: 'run build'
     - task: PublishBuildArtifacts@1
       displayName: publish frontend artifact
