@@ -52,18 +52,19 @@ stages:
       displayName: node install
       inputs:
         versionSource: 'spec'
-        versionSpec: '18.15.0'
+        versionSpec: '16.1.0'
     - task: Npm@1
       displayName: npm install
       inputs:
         command: 'install'
-        workingDir: 'Angular7'
+        workingDir: 'Asp.Net-Core-Web-API-and-Angular-7-CRUD\Angular7'
     - task: Npm@1
       displayName: npm run and build
       inputs:
         command: 'custom'
-        workingDir: 'Angular7'
-        customCommand: 'run build'
+        workingDir: 'Asp.Net-Core-Web-API-and-Angular-7-CRUD\Angular7'
+        customCommand: 'run build --prod'
+
     - task: PublishBuildArtifacts@1
       displayName: publish frontend artifact
       inputs:
