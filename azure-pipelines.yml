@@ -12,22 +12,24 @@ stages:
   jobs:
   - job: backend_build
     steps:
-    - task: NuGetCommand@2
+    - task: UseDotNet@2
       inputs:
-        command: 'restore'
-        restoreSolution: 'WebAPI/WebAPI.sln'
-        feedsToUse: 'select'
+        packageType: 'sdk'
+        version: 
     - task: DotNetCoreCLI@2
+      displayName: dotnet restore
       inputs:
         command: 'restore'
         projects: 'WebAPI/WebAPI.sln'
         feedsToUse: 'select'
     - task: DotNetCoreCLI@2
+      displayName: dotnet build
       inputs:
         command: 'build'
         projects: 'WebAPI/WebAPI.sln'
         configuration: Release
     - task: PublishBuildArtifacts@1
+      displayName: publish backend artifact
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'backend'
@@ -40,15 +42,18 @@ stages:
   - job: frontend_build
     steps:
     - task: Npm@1
+      displayName: npm install
       inputs:
         command: 'install'
         workingDir: 'Asp.Net-Core-Web-API-and-Angular-7-CRUD/Angular7'
     - task: Npm@1
+      displayName: npm run and build
       inputs:
         command: 'custom'
         workingDir: 'Asp.Net-Core-Web-API-and-Angular-7-CRUD/Angular7'
         customCommand: 'run build'
     - task: PublishBuildArtifacts@1
+      displayName: publish frontend artifact
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'frontend'
