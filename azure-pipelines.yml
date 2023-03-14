@@ -52,7 +52,7 @@ stages:
       displayName: node install
       inputs:
         versionSource: 'spec'
-        versionSpec: 7.0.3.x
+        versionSpec: 8.9.5
     - task: Npm@1
       displayName: npm install
       inputs:
